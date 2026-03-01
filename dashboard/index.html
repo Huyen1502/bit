@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTC Market Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">BTC Market Dashboard</p>
+        <h1>Power BI style market analytics, but static and free to host.</h1>
+        <p class="hero-copy">
+          Daily drawdown, monthly return, bull/bear regimes, and cycle duration
+          from your own BTC data pipeline.
+        </p>
+      </div>
+      <div class="hero-badge">
+        <span id="latestDate">Loading...</span>
+        <strong id="latestRegime">-</strong>
+      </div>
+    </header>
+
+    <section class="kpi-grid">
+      <article class="kpi-card">
+        <span>Latest Close</span>
+        <strong id="kpiClose">-</strong>
+      </article>
+      <article class="kpi-card">
+        <span>ATH Close</span>
+        <strong id="kpiAth">-</strong>
+      </article>
+      <article class="kpi-card">
+        <span>Current Drawdown</span>
+        <strong id="kpiDrawdown">-</strong>
+      </article>
+      <article class="kpi-card">
+        <span>Max Drawdown</span>
+        <strong id="kpiMaxDd">-</strong>
+      </article>
+      <article class="kpi-card">
+        <span>Avg Cycle Years</span>
+        <strong id="kpiCycleYears">-</strong>
+      </article>
+      <article class="kpi-card">
+        <span>Monthly Regime</span>
+        <strong id="kpiMonthlyRegime">-</strong>
+      </article>
+    </section>
+
+    <section class="chart-grid">
+      <article class="panel panel-wide">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Trend</p>
+            <h2>BTC Close vs ATH</h2>
+          </div>
+        </div>
+        <div id="priceChart" class="chart"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Risk</p>
+            <h2>Daily Drawdown</h2>
+          </div>
+        </div>
+        <div id="drawdownChart" class="chart"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Monthly</p>
+            <h2>Monthly Return</h2>
+          </div>
+        </div>
+        <div id="monthlyReturnChart" class="chart"></div>
+      </article>
+
+      <article class="panel panel-wide">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Regime</p>
+            <h2>Monthly Bull / Bear Timeline</h2>
+          </div>
+        </div>
+        <div id="regimeChart" class="chart"></div>
+      </article>
+
+      <article class="panel panel-wide">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Cycle</p>
+            <h2>Cycle Duration and Return</h2>
+          </div>
+        </div>
+        <div id="cycleChart" class="chart"></div>
+      </article>
+    </section>
+
+    <section class="table-grid">
+      <article class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Regimes</p>
+            <h2>Macro Segments</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="regimeTable">
+            <thead>
+              <tr>
+                <th>Regime</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Years</th>
+                <th>Return %</th>
+                <th>Min DD %</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Cycles</p>
+            <h2>Bull to Bear Cycles</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="cycleTable">
+            <thead>
+              <tr>
+                <th>Cycle</th>
+                <th>Bull Start</th>
+                <th>Bear End</th>
+                <th>Years</th>
+                <th>Bull %</th>
+                <th>Bear %</th>
+                <th>Cycle %</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
